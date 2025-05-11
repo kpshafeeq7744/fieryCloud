@@ -12,6 +12,7 @@ const __dirname = dirname(__filename);
 
 
 
+
 // config
 dotenv.config();
 ConnectDb()
@@ -28,10 +29,11 @@ app.use(cors({
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use(express.json()); // Parse JSON body
-app.use(errorMiddleware)
 
 // Example route
 app.use('/api',allRoutes );
+app.use(errorMiddleware)
+
 
 // Start server
 app.listen(PORT, () => {
