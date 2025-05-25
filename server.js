@@ -23,7 +23,7 @@ const PORT = process.env.PORT || 3000;
 // Middleware
 
 app.use(cors({
-  origin:"http://localhost:5173",
+  origin:process.env.FRONTENDURL,
   credentials:true
 })); 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
