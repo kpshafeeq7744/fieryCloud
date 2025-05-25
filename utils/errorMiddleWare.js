@@ -1,4 +1,4 @@
-const errorMiddleware = (err, req, res, next) => {
+export const errorMiddleWare = (err, req, res, next) => {
   // Check if err is an instance of Error (which it should be)
   const statusCode = err?.statusCode || 500;
   const message = err?.message || 'Internal Server Error';
@@ -9,6 +9,6 @@ const errorMiddleware = (err, req, res, next) => {
     message,
     stack: process.env.NODE_ENV === 'development' ? err?.stack : undefined,
   });
-};
+}
 
-export default errorMiddleware
+

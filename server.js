@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import ConnectDb from './config/db.js'
-import errorMiddleware from './utils/errorMiddleware.js';
+
 import allRoutes from './routes/index.js';
 import path from 'path';
 import { dirname } from 'path';
@@ -32,7 +32,7 @@ app.use(express.json()); // Parse JSON body
 
 // Example route
 app.use('/api',allRoutes );
-app.use(errorMiddleware)
+// app.use()
 
 
 // Start server
