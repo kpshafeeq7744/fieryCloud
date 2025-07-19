@@ -1,7 +1,6 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
-// Schema for dishes (common structure for both non-veg and salads)
 const DishesSchema = new Schema({
   name: {
     type: String,
@@ -16,7 +15,7 @@ const DishesSchema = new Schema({
   vendor:{
     type:String,
     required:true,
-    enum:['fieryGrills','tiffinMom']
+    // enum:['fieryGrills','tiffinMom']
   },
   category: {
     type: String,
@@ -30,7 +29,6 @@ const DishesSchema = new Schema({
   },
 },{timestamps:true});
 
-// Create the model
 const Dishes = mongoose.model('Dishe', DishesSchema);
 
-module.exports =Dishes ;
+export default Dishes ;

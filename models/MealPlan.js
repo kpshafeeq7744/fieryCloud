@@ -1,59 +1,38 @@
-import mongoose from "mongoose"
-const Schema = mongoose.Schema;
+import mongoose from 'mongoose';
 
-// Meal Sizes Schema
-const mealSizeSchema = new Schema(
-    {
-        id: {
-            type: String,
-            required: true,
-            unique: true,
-        },
-        plan: {
-            type: String,
-            enum: ["single", "couple", "family"],
-            required: true,
-        },
-        category: {
-            type: String,
-            required: true,
-            enum: ["vegetarian", "non-vegetarian", "mixed"],
-        },
-        basePrice: {
-            type: Number,
-            required: true,
-        },
-        description: {
-            type: String,
-            required: true,
-        },
-        iconBg: {
-            type: String,
-            default: "bg-blue-100",
-        },
-        iconColor: {
-            type: String,
-            default: "text-blue-600",
-        },
-        icon: {
-            type: String,
-            required: true,
-        },
-        features: {
-            type: [String],
-            required: true,
-        },
-        popular: {
-            type: Boolean,
-            default: false,
-        },
-        active: {
-            type: Boolean,
-            default: true,
-        },
-    },
-    { timestamps: true }
-);
+const mealPlanSchema = new mongoose.Schema({
+  vendor: {
+    type: String,
+    required: true,
+  },
+  mealType: {
+    type: String,
+    enum: ['veg', 'non-veg', 'mixed'],
+    required: true,
+  },
+  planType: {
+    type: String,
+    required: true, // e.g. 'Couple Plan', 'Family Plan', 'Single Plan'
+  },
+  price: {
+    type: Number,
+    required: true,
+  },
+  pricePer: {
+    type: String,
+    required: true,
+  },
+  title: {
+    type: String,
+    required: true, // e.g. 'Delicious vegetarian meals designed for two'
+  },
+  description: {
+    type: [String], // array of strings like features or included items
+    required: true,
+  },
+}, {
+  timestamps: true
+});
 
-const MealSize = mongoose.model("MealSize", mealSizeSchema);
-export default MealSize;
+const MealPlan = mongoose.model('MealPlan', mealPlanSchema);
+export default MealPlan;

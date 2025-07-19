@@ -23,7 +23,7 @@ const PORT = process.env.PORT || 3000;
 // Middleware
 
 app.use(cors({
-  origin:process.env.FRONTENDURL,
+  origin:[process.env.FRONTENDURL,process.env.ADMINFRONTENDURL],
   credentials:true
 })); 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
@@ -32,7 +32,8 @@ app.use(express.json()); // Parse JSON body
 
 // Example route
 app.use('/api',allRoutes );
-// app.use()
+
+
 
 
 // Start server
