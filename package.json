@@ -9,5 +9,8 @@
     "mongoose": "^8.14.1",
     "multer": "^2.0.1",
     "resend": "^4.5.1"
+  },
+  "scripts": {
+    "start": "node server.js"
   }
 }
