@@ -1,80 +1,48 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import OfferBanner from "./models/OfferBanner.js"; // adjust path if needed
+import Faq from "./models/Faq.js";
 
 dotenv.config();
 
-const seedOfferBanners = async () => {
+const seedFaqs = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-    });
+    await mongoose.connect(process.env.MONGO_URI);
 
-    console.log("MongoDB Connected");
+    console.log("MongoDB connected for FAQ seeding");
 
-    // Optional: Clear existing offer banners
-    await OfferBanner.deleteMany();
+    // Optional: Remove existing FAQs
+    await Faq.deleteMany();
 
-    const banners = [
+    const faqs = [
       {
-        image: "https://img.freepik.com/free-psd/landscape-food-banner-template-pizza-sale_505751-3150.jpg",
-        title: "Pizza Carnival – Flat 40% OFF",
-        description: "Delicious handmade pizzas now 40% off. Order now!",
-        vendor: "FG"
+        question: 'Can I skip a delivery?',
+        answer: 'Yes, you can skip a delivery by notifying us at least 48 hours in advance. Simply log into your account or call our customer service to arrange this.',
+        vendor: 'FG'
       },
       {
-        image: "https://img.freepik.com/free-psd/landscape-food-banner-template-burger-offer_505751-3147.jpg",
-        title: "Double Patty Deal – Buy 1 Get 1 Free",
-        description: "Satisfy your burger cravings with a juicy offer.",
-        vendor: "FG"
+        question: 'How do you handle food allergies?',
+        answer: 'We take food allergies very seriously. You can specify any allergies or dietary restrictions when you sign up, and our chefs will ensure your meals are prepared accordingly. However, all meals are prepared in the same kitchen, so cross-contamination is possible.',
+        vendor: 'FG'
       },
       {
-        image: "https://img.freepik.com/free-psd/landscape-food-banner-template-combo-meal_505751-3149.jpg",
-        title: "Combo Meal Deal – Only ₹199",
-        description: "Get a full combo meal with drinks and dessert at a killer price.",
-        vendor: "FG"
+        question: 'What areas do you deliver to?',
+        answer: 'We currently deliver to all major areas within a 15-mile radius of our kitchen. You can check if your location is covered by entering your zip code on our delivery page.',
+        vendor: 'FG'
       },
       {
-        image: "https://img.freepik.com/free-psd/landscape-food-banner-template-healthy-salad_505751-3151.jpg",
-        title: "Healthy Bites – 25% Off on Salads",
-        description: "Stay fit and full with our power-packed salad menu.",
-        vendor: "FG"
-      },
-      {
-        image: "https://img.freepik.com/free-psd/landscape-food-banner-template-dessert-offer_505751-3145.jpg",
-        title: "Sweet Treats – Free Dessert Over ₹299",
-        description: "Order more and treat yourself to something sweet.",
-        vendor: "FG"
-      },
-      {
-        image: "https://img.freepik.com/free-psd/landscape-food-banner-template-cold-drinks_505751-3152.jpg",
-        title: "Cool Drinks – Summer Sale 30% OFF",
-        description: "Beat the heat with icy beverages at a discount.",
-        vendor: "FG"
-      },
-      {
-        image: "https://img.freepik.com/free-psd/landscape-food-banner-template-snacks-festival_505751-3153.jpg",
-        title: "Snack Festival – 2 for ₹99",
-        description: "Grab your favorite snacks in an exciting combo deal.",
-        vendor: "FG"
-      },
-      {
-        image: "https://img.freepik.com/free-psd/landscape-food-banner-template-biryani-love_505751-3148.jpg",
-        title: "Biryani Bonanza – ₹100 OFF",
-        description: "Savor the rich taste of biryani with this amazing offer.",
-        vendor: "FG"
+        question: 'How do I heat the food?',
+        answer: 'Our meals come in microwave-safe containers. Simply heat for 2-3 minutes or transfer to a pot and heat on the stove. Detailed heating instructions are included with each delivery.',
+        vendor: 'FG'
       }
     ];
-    
 
-    await OfferBanner.insertMany(banners);
-    console.log("Offer banners seeded successfully.");
+    await Faq.insertMany(faqs);
+    console.log("FAQs seeded successfully.");
     process.exit();
   } catch (error) {
-    console.error("Error seeding offer banners:", error);
+    console.error("Error seeding FAQs:", error);
     process.exit(1);
   }
 };
-
-seedOfferBanners();
+// je
+seedFaqs();
