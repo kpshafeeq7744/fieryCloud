@@ -7,7 +7,7 @@ import addParticpantRoutes from './addParticpantRoutes.js'
 import contactDetailsRoutes from './contactDetailsRoutes.js'
 import offerBannerRoutes from './offerRoutes.js'
 import faqRoutes from './faqRoutes.js'
-import contactRoutes from './contactRoutes.js'
+import contactRoutes from './contactUsRoutes.js'
 const route=express.Router()
 
 route.use("/plans",planRoutes)
