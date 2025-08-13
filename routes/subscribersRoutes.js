@@ -1,7 +1,8 @@
 import express from 'express'
-import { addSubscriberController } from '../controllers/subscriberControllers.js'
+import { addSubscriberController, getSubscribersController } from '../controllers/subscriberControllers.js'
 const route= express.Router()
 
 route.post("/addSubscriber",addSubscriberController)
+route.get("/:vendor",getSubscribersController)
 
 export default route

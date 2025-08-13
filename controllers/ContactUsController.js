@@ -11,11 +11,27 @@ export const createContactUs = async (req, res) => {
 };
 
 export const getContactUs = async (req, res) => {
-    try {
-        const contactUs = await ContactUs.find({vendor:req.params.vendor});
-        res.status(200).json(contactUs);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
+  try {
+    const { vendor } = req.params;
+    const page = parseInt(req.query.page) || 1; // default page 1
+    const limit = 10; // 10 per page
+    const skip = (page - 1) * limit;
+
+    const [data, totalCount] = await Promise.all([
+      ContactUs.find({ vendor })
+        .skip(skip)
+        .limit(limit)
+        .sort({ createdAt: -1 }), // newest first
+      ContactUs.countDocuments({ vendor })
+    ]);
+
+    res.status(200).json({
+      page,
+      totalPages: Math.ceil(totalCount / limit),
+      totalContacts: totalCount,
+      contacts: data
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 };
-    

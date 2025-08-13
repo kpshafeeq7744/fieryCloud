@@ -64,3 +64,15 @@ export const addSubscriberService = async ({ data, vendor }) => {
         console.log(er);
     }
 };
+
+export const getSubscribersService = async (vendor, skip, limit) => {
+  const [data, totalCount] = await Promise.all([
+    Subscriber.find({ vendor })
+      .skip(skip)
+      .limit(limit)
+      .sort({ createdAt: -1 }), // optional sorting
+    Subscriber.countDocuments({ vendor })
+  ]);
+
+  return { data, totalCount };
+};
