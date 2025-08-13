@@ -46,10 +46,6 @@ export const updateIndividualPlanController = async (req, res) => {
 // create add ons--------------------------------
 export const createAddOnsController = async (req, res) => {
     try {
-      console.log("🌐 Cloudinary config:");
-      console.log("cloud_name:", process.env.CLOUDINARY_CLOUD_NAME);
-      console.log("api_key:", process.env.CLOUDINARY_API_KEY);
-      console.log("api_secret:", process.env.CLOUDINARY_API_SECRET ? "***hidden***" : "❌ Not Set");
   
       const { vendor } = req.params;
   

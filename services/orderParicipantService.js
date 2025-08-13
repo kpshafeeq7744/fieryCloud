@@ -8,14 +8,15 @@ const teamEmails = [
   { email: "bubblycheers1127@gmail.com", name: "Bubbly" },
 ];
 
-export const addParticipantService=async({name,email,vendor})=>{
+export const addParticipantService=async({name,email,vendor,phone})=>{
     if (!emailRegex.test(email)) {
         throw new CustomError("Enter Valid email",400)
     }
 const newParticipant= await   orderParticipant.create({
         name,
         email,
-        vendor
+        vendor,
+        phone
     })
 // user
     await sendEmail({

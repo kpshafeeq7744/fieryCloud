@@ -12,10 +12,11 @@ const subscriberSchema = new mongoose.Schema({
   },
   vendor: {
     type: String,
-    enum: ['fieryGrills', 'tiffinMom'],
+    enum: ['FG', 'tiffinMom'],
     required: true
-  }
-});
+  },
+
+}, { timestamps: true });
 
 const Subscriber = mongoose.model('Subscriber', subscriberSchema);
 
